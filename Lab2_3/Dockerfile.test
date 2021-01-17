@@ -1,0 +1,10 @@
+FROM golang:1.14 as build
+
+RUN apt-get update && apt-get install -y ninja-build
+
+RUN go get -u github.com/Iluysha/Lab2_2/build/cmd/bood
+
+WORKDIR /go/src/practice-3
+COPY . .
+
+ENTRYPOINT ["./test.sh"]
