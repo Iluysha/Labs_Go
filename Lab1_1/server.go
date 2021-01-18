@@ -13,13 +13,13 @@ func handleStart(resWr http.ResponseWriter, req *http.Request) {
 	fmt.Println("Page success")
 }
 
-I
+func handleCurrentTime(resWr http.ResponseWriter, req *http.Request) {
 	jsonCur, err := json.Marshal(map[string]string{ "time": time.Now().Format(time.RFC3339) })
 	if err != nil { // Error
 		log.Println(err)
 		return
 	}
-I
+	fmt.Println("Time success")
 	fmt.Println(time.Now().Format(time.RFC3339))
 	resWr.Write(jsonCur) // Sending time
 }
@@ -27,7 +27,7 @@ I
 func main() {
 	// Request handles
 	http.HandleFunc("/", handleStart)
-I
+	http.HandleFunc("/time", handleCurrentTime)
 	// Deffered call
 	defer http.ListenAndServe(":8795", nil)
 	// Server status message
